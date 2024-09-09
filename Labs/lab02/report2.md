@@ -1,0 +1,211 @@
+---
+## Front matter
+title: "Отчёт по лабораторной работе №1"
+author: "Паращенко Антонина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: PT Serif
+romanfont: PT Serif
+sansfont: PT Sans
+monofont: PT Mono
+mainfontoptions: Ligatures=TeX
+romanfontoptions: Ligatures=TeX
+sansfontoptions: Ligatures=TeX,Scale=MatchLowercase
+monofontoptions: Scale=MatchLowercase,Scale=0.9
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получение практических навыков работы в консоли с атрибутами файлов, закрепление теоретических основ дискреционного разграничения доступа в современных системах с открытым кодом на базе ОС Linux.
+
+# Ход лабораторной работы
+## Задание 1
+
+#### №1
+В установленной при выполнении предыдущей лабораторной работы
+операционной системе создаём учётную запись пользователя guest (использую учётную запись администратора)с помощью команды:
+***useradd quest***
+#### №2
+Задаём пароль для пользователя guest с помощью команды:
+***passwd quest***
+(рис. [-@fig:001])
+
+![Создание пользователять quest, задание пароля](Capture.jpg){ #fig:001 width=70% }
+
+#### №3
+Воходим в систему от имени пользователя guest с помощью команды:
+***su - quest***
+#### №4
+Определяем директорию, в которой находимся, с помощью команды:
+***pwd***
+(рис. [-@fig:002])
+
+![Определяем директорию](Capture2.jpg){ #fig:002 width=70% }
+
+#### №5
+Уточняем имя нашего пользователя с помощью команды:
+***whoami***
+(рис. [-@fig:003])
+
+![Имя пользователя](Capture3.jpg){ #fig:003 width=70% }
+
+#### №6
+Уточняем имя пользователя, его группу, а также группы, куда входит пользователь с помощью команды:
+***id***
+Выведенные значения uid, gid и др. запоминаем. Сравнив вывод id с выводом команды groups, видим, что всё совпадает.
+(рис. [-@fig:004])
+
+![Информация о пользователе](Capture31.jpg){ #fig:004 width=70% }
+
+#### №7
+Сравниваем полученную информацию об имени пользователя с данными,
+выводимыми в приглашении командной строки.
+
+#### №8
+Просмотрите файл /etc/passwd командой
+***cat /etc/passwd***
+Найдите в нём свою учётную запись. Определите uid пользователя.
+Определите gid пользователя. Сравните найденные значения с полученными в предыдущих пунктах.
+
+(рис. [-@fig:005]) - (рис. [-@fig:006])
+
+![id](4.jpg){ #fig:005 width=70% }
+![cat](5.jpg){ #fig:006 width=70% }
+
+#### №9
+Определите существующие в системе директории командой
+***ls -l /home/***
+Найдите в нём свою учётную запись. Определите uid пользователя.
+Определите gid пользователя. Сравните найденные значения с полученными в предыдущих пунктах.
+
+(рис. [-@fig:007])
+
+![ls](6.jpg){ #fig:007 width=70% }
+
+Список поддиректорий директории /home получить удалось. На директориях установлены права чтения, записи и выполнения для самого пользователя
+(для группы и остальных пользователей никаких прав доступа не установлено.
+
+#### №10
+Проверьте, какие расширенные атрибуты установлены на поддиректориях, находящихся в директории /home, командой:
+***lsattr /home***
+
+(рис. [-@fig:008])
+
+![lsattr](7.jpg){ #fig:008 width=70% }
+Удалось увидеть расширенные атрибуты только директории того пользователя, от имени которого я нахожусь в системе
+
+#### №11
+Создайте в домашней директории поддиректорию dir1 командой:
+***mkdir dir1***
+Определите командами ls -l и lsattr, какие права доступа и расширенные атрибуты были выставлены на директорию dir1.
+
+(рис. [-@fig:009]) - (рис. [-@fig:011])
+
+![mkdir](8.jpg){ #fig:009 width=70% }
+![ls -l и lsattr](9.jpg){ #fig:010 width=70% }
+![lsattr](10.jpg){ #fig:011 width=70% }
+
+#### №12
+Снимите с директории dir1 все атрибуты командой:
+***chmod 000 dir1***
+Определите командами ls -l и lsattr, какие права доступа и расширенные атрибуты были выставлены на директорию dir1.
+
+(рис. [-@fig:012])
+
+![chmod](11.jpg){ #fig:012 width=70% }
+
+#### №13
+Попыталась создать в директории dir1 файл file1 командой echo “test” >
+/home/guest/dir1/file1. Этого сделать не получилось, т.к. предыдущим
+действием мы убрали право доступа на запись в директории.
+
+
+## Задание 2
+#### №1
+Заполните таблицу **«Установленные права и разрешённые действия»**.
+*Создание файла: “echo”text” > dir1/file1”
+Удаление файла: “rm -r dir1/file1”
+Запись в файл: “echo”textnew” > dir1/file1”
+Чтение файла: “cat dir1/file1”
+Смена директории: “cd dir1”
+Просмотр файлов в директории: “ls dir1”
+Переименование файла: “mv dir1/file1 filenew”
+Смена атрибутов файла: “chattr -a dir1/file1”*
+
+Таблица 2.1(рис. [-@fig:013]) - (рис. [-@fig:016])
+
+![](14.jpg){ #fig:013 width=70% }
+
+![](15.jpg){ #fig:014 width=70% }
+
+![](16.jpg){ #fig:015 width=70% }
+
+![](17.jpg){ #fig:016 width=70% }
+
+#### №2
+Заполните таблицу **«Минимально необходимые права»**.
+
+Таблица 2.2 (рис. [-@fig:017])
+
+![](18.jpg){ #fig:017 width=70% }
+
+
+# Вывод
+Научились работать в консоле с атрибутами файлов и директорий.
+
+# Литература
+1. Команды Linux для работы с файлами
+https://losst.pro/komandy-linux-dlya-raboty-s-fajlami#toc-10-touch-sozdat-fayl
+2. Права доступа к файлам и папкам в Linux
+https://firstvds.ru/technology/linux-permissions
