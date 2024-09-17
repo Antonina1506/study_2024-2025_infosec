@@ -1,1 +1,177 @@
----## Front mattertitle: "Отчёт по лабораторной работе №3"author: "Паращенко Антонина Дмитриевна"## Generic otionslang: ru-RUtoc-title: "Содержание"## Bibliographybibliography: bib/cite.bibcsl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl## Pdf output formattoc: true # Table of contentstoc-depth: 2lof: true # List of figureslot: true # List of tablesfontsize: 12ptlinestretch: 1.5papersize: a4documentclass: scrreprt## I18n polyglossiapolyglossia-lang:&nbsp; name: russian&nbsp; options:	- spelling=modern	- babelshorthands=truepolyglossia-otherlangs:&nbsp; name: english## I18n babelbabel-lang: russianbabel-otherlangs: english## Fontsmainfont: PT Serifromanfont: PT Serifsansfont: PT Sansmonofont: PT Monomainfontoptions: Ligatures=TeXromanfontoptions: Ligatures=TeXsansfontoptions: Ligatures=TeX,Scale=MatchLowercasemonofontoptions: Scale=MatchLowercase,Scale=0.9## Biblatexbiblatex: truebiblio-style: "gost-numeric"biblatexoptions:&nbsp; - parentracker=true&nbsp; - backend=biber&nbsp; - hyperref=auto&nbsp; - language=auto&nbsp; - autolang=other*&nbsp; - citestyle=gost-numeric## Pandoc-crossref LaTeX customizationfigureTitle: "Рис."tableTitle: "Таблица"listingTitle: "Листинг"lofTitle: "Список иллюстраций"lotTitle: "Список таблиц"lolTitle: "Листинги"## Misc optionsindent: trueheader-includes:&nbsp; - \usepackage{indentfirst}&nbsp; - \usepackage{float} # keep figures where there are in the text&nbsp; - \floatplacement{figure}{H} # keep figures where there are in the text---# Цель работыПолучение практических навыков работы в консоли с атрибутами файлов для групп пользователей.# Ход лабораторной работы## Задание 1#### №1-2В установленной при выполнении предыдущей лабораторной работыоперационной системе учётная запись пользователя guest уже создала и задан пароль.***useradd quest***(рис. [-@fig:001])![Пользователь quest](1.JPG){ #fig:001 width=70% }#### №3-4Создаем второго пользователя guest2 с помощью команды:***useradd quest***И добавляем в группу quest:&nbsp;***gpasswd -a quest2 quest***(рис. [-@fig:002])![Создание пользователять quest2, добавление в группу quest](2.JPG){ #fig:002 width=70% }#### №5Осуществите вход в систему от двух пользователей на двух разных консолях: guest на первой консоли и guest2 на второй консоли.(рис. [-@fig:003])![2 пользователя](3.JPG){ #fig:003 width=70% }#### №6Для обоих пользователей командой pwd определите директорию, в которой вы находитесь.***pwd***(рис. [-@fig:004])![Местонахождение пользователя](4.JPG){ #fig:004 width=70% }#### №7Уточняем имя пользователя, его группу, кто входит в неё и к каким группам принадлежит он сам. Определите командами ***groups guest*** и ***groups guest2***, в какие группы входят пользователи guest и guest2. Сравните вывод команды groups с выводом команд id -Gn и id -G.(рис. [-@fig:005])![id](5.JPG){ #fig:005 width=70% }#### №8Сравним полученную информацию с содержимым файла ***/etc/group***.Просмотрите файл командой***cat /etc/group***(рис. [-@fig:007]) - (рис. [-@fig:007])![/etc/group](6.JPG){ #fig:006 width=70% }![/etc/group](7.JPG){ #fig:007 width=70% }#### №9От имени пользователя guest измените права директории ***/home/guest***,разрешив все действия для пользователей группы:***chmod g+rwx /home/guest***(рис. [-@fig:008])![chmod g+rwx](8.JPG){ #fig:008 width=70% }#### №10От имени пользователя guest снимите с директории ***/home/guest/dir1*** все атрибуты командой***chmod 000 dirl***И проверим изменения командой***ls -l***(рис. [-@fig:009])![chmod 000](9.JPG){ #fig:009 width=70% }#### №11Меняя атрибуты у директории dir1 и файла file1 от имени пользователя guest и делая проверку от пользователя guest2, заполним табл. 3.1,определив опытным путём, какие операции разрешены, а какие нет.&nbsp;Создание файла: “echo”text” &gt; dir1/file1”Удаление файла: “rm -r dir1/file1”Запись в файл: “echo”textnew” &gt; dir1/file1”Чтение файла: “cat dir1/file1”Смена директории: “cd dir1”Просмотр файлов в директории: “ls dir1”Переименование файла: “mv dir1/file1 filenew”Смена атрибутов файла: “chattr -a dir1/file1”*(рис. [-@fig:010]) - (рис. [-@fig:014])![Проверка действий](10.JPG){ #fig:010 width=70% }![Таблица 3.1](11.JPG){ #fig:011 width=70% }![Таблица 3.1](12.JPG){ #fig:012 width=70% }![Таблица 3.1](13.JPG){ #fig:013 width=70% }![Таблица 3.1](14.JPG){ #fig:014 width=70% }#### №12На основании заполненной таблицы определим те или иные минимально необходимые права для выполнения пользователем guest2 операций внутри директории dir1 и заполним табл. 3.2.рис. [-@fig:015])![Таблица 3.2](15.JPG){ #fig:015 width=70% }# ВыводПолучили практические навыки работы в консоли с атрибутами файлов для групп пользователей.# Литература1. Команды Linux для работы с файламиhttps://losst.pro/komandy-linux-dlya-raboty-s-fajlami#toc-10-touch-sozdat-fayl2. Права доступа к файлам и папкам в Linuxhttps://firstvds.ru/technology/linux-permissions
+---
+## Front matter
+title: "Отчёт по лабораторной работе №3"
+author: "Паращенко Антонина Дмитриевна"
+
+## Generic otions
+lang: ru-RU
+toc-title: "Содержание"
+
+## Bibliography
+bibliography: bib/cite.bib
+csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+## Pdf output format
+toc: true # Table of contents
+toc-depth: 2
+lof: true # List of figures
+lot: true # List of tables
+fontsize: 12pt
+linestretch: 1.5
+papersize: a4
+documentclass: scrreprt
+## I18n polyglossia
+polyglossia-lang:
+  name: russian
+  options:
+	- spelling=modern
+	- babelshorthands=true
+polyglossia-otherlangs:
+  name: english
+## I18n babel
+babel-lang: russian
+babel-otherlangs: english
+## Fonts
+mainfont: PT Serif
+romanfont: PT Serif
+sansfont: PT Sans
+monofont: PT Mono
+mainfontoptions: Ligatures=TeX
+romanfontoptions: Ligatures=TeX
+sansfontoptions: Ligatures=TeX,Scale=MatchLowercase
+monofontoptions: Scale=MatchLowercase,Scale=0.9
+## Biblatex
+biblatex: true
+biblio-style: "gost-numeric"
+biblatexoptions:
+  - parentracker=true
+  - backend=biber
+  - hyperref=auto
+  - language=auto
+  - autolang=other*
+  - citestyle=gost-numeric
+## Pandoc-crossref LaTeX customization
+figureTitle: "Рис."
+tableTitle: "Таблица"
+listingTitle: "Листинг"
+lofTitle: "Список иллюстраций"
+lotTitle: "Список таблиц"
+lolTitle: "Листинги"
+## Misc options
+indent: true
+header-includes:
+  - \usepackage{indentfirst}
+  - \usepackage{float} # keep figures where there are in the text
+  - \floatplacement{figure}{H} # keep figures where there are in the text
+---
+
+# Цель работы
+
+Получение практических навыков работы в консоли с атрибутами файлов для групп пользователей.
+
+# Ход лабораторной работы
+## Задание 1
+
+#### №1-2
+В установленной при выполнении предыдущей лабораторной работы
+операционной системе учётная запись пользователя guest уже создала и задан пароль.
+***useradd quest***
+(рис. [-@fig:001])
+
+![Пользователь quest](1.JPG){ #fig:001 width=70% }
+
+#### №3-4
+Создаем второго пользователя guest2 с помощью команды:
+***useradd quest***
+И добавляем в группу quest: 
+***gpasswd -a quest2 quest***
+(рис. [-@fig:002])
+
+![Создание пользователять quest2, добавление в группу quest](2.JPG){ #fig:002 width=70% }
+
+#### №5
+Осуществите вход в систему от двух пользователей на двух разных консолях: guest на первой консоли и guest2 на второй консоли.
+(рис. [-@fig:003])
+
+![2 пользователя](3.JPG){ #fig:003 width=70% }
+
+#### №6
+Для обоих пользователей командой pwd определите директорию, в которой вы находитесь.
+***pwd***
+(рис. [-@fig:004])
+
+![Местонахождение пользователя](4.JPG){ #fig:004 width=70% }
+
+#### №7
+Уточняем имя пользователя, его группу, кто входит в неё и к каким группам принадлежит он сам. Определите командами ***groups guest*** и ***groups guest2***, в какие группы входят пользователи guest и guest2. Сравните вывод команды groups с выводом команд id -Gn и id -G.
+(рис. [-@fig:005])
+
+![id](5.JPG){ #fig:005 width=70% }
+
+#### №8
+Сравним полученную информацию с содержимым файла ***/etc/group***.
+Просмотрите файл командой
+***cat /etc/group***
+(рис. [-@fig:007]) - (рис. [-@fig:007])
+
+![/etc/group](6.JPG){ #fig:006 width=70% }
+
+![/etc/group](7.JPG){ #fig:007 width=70% }
+
+#### №9
+От имени пользователя guest измените права директории ***/home/guest***,
+разрешив все действия для пользователей группы:
+***chmod g+rwx /home/guest***
+(рис. [-@fig:008])
+
+![chmod g+rwx](8.JPG){ #fig:008 width=70% }
+
+#### №10
+От имени пользователя guest снимите с директории ***/home/guest/dir1*** все атрибуты командой
+***chmod 000 dirl***
+И проверим изменения командой
+***ls -l***
+(рис. [-@fig:009])
+
+![chmod 000](9.JPG){ #fig:009 width=70% }
+
+#### №11
+Меняя атрибуты у директории dir1 и файла file1 от имени пользователя guest и делая проверку от пользователя guest2, заполним табл. 3.1,
+определив опытным путём, какие операции разрешены, а какие нет. 
+
+Создание файла: “echo”text” > dir1/file1”
+Удаление файла: “rm -r dir1/file1”
+Запись в файл: “echo”textnew” > dir1/file1”
+Чтение файла: “cat dir1/file1”
+Смена директории: “cd dir1”
+Просмотр файлов в директории: “ls dir1”
+Переименование файла: “mv dir1/file1 filenew”
+Смена атрибутов файла: “chattr -a dir1/file1”*
+
+(рис. [-@fig:010]) - (рис. [-@fig:014])
+
+![Проверка действий](10.JPG){ #fig:010 width=70% }
+
+![Таблица 3.1](11.JPG){ #fig:011 width=70% }
+
+![Таблица 3.1](12.JPG){ #fig:012 width=70% }
+
+![Таблица 3.1](13.JPG){ #fig:013 width=70% }
+
+![Таблица 3.1](14.JPG){ #fig:014 width=70% }
+
+#### №12
+На основании заполненной таблицы определим те или иные минимально необходимые права для выполнения пользователем guest2 операций внутри директории dir1 и заполним табл. 3.2.
+рис. [-@fig:015])
+
+![Таблица 3.2](15.JPG){ #fig:015 width=70% }
+
+
+# Вывод
+Получили практические навыки работы в консоли с атрибутами файлов для групп пользователей.
+
+# Литература
+1. Команды Linux для работы с файлами
+https://losst.pro/komandy-linux-dlya-raboty-s-fajlami#toc-10-touch-sozdat-fayl
+2. Права доступа к файлам и папкам в Linux
+https://firstvds.ru/technology/linux-permissions
