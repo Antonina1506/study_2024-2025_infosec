@@ -1,0 +1,85 @@
+<hr>
+<h2>marp: true</h2>
+<h1>“Отчёт по лабораторной работе №4”</h1>
+<h2>Дисциплина: Основы информационной безопасности</h2>
+<h3>Паращенко Антонина Дмитриевна</h3>
+<hr>
+<h1>Цель работы</h1>
+<p>Получение практических навыков работы в консоли с расширенными атрибутами файлов.</p>
+<hr>
+<h1>Выполнение лабораторной работы</h1>
+<ol>
+<li>От имени пользователя guest определяем расширенные атрибуты файла /home/guest/dir1/file1 командой <em><strong>lsattr /home/guest/dir1/file1</strong></em>
+(рис.[1])</li>
+</ol>
+<p><img src="1.JPG" alt="1"></p>
+<hr>
+<ol start="2">
+<li>Установливаем командой <em><strong>chmod 600 file1</strong></em> на файл file1 права, разрешающие чтение и запись для владельца файла.(рис.[2])</li>
+</ol>
+<p><img src="2.JPG" alt="2"></p>
+<hr>
+<ol start="3">
+<li>Пробуем установить на файл /home/guest/dir1/file1 расширенный атрибут a от имени пользователя guest: <em><strong>chattr +a /home/guest/dir1/file1</strong></em>
+В ответ получили отказ от выполнения операции(рис.[3])</li>
+</ol>
+<p><img src="3.JPG" alt="3"></p>
+<hr>
+<ol start="4">
+<li>Заходим на вторую консоль и повышаем свои права с помощью команды <em><strong>sudo</strong></em>. Установливаем расширенный атрибут <em><strong>a</strong></em> на файл /home/guest/dir1/file1 от имени суперпользователя: <em><strong>chattr +a /home/guest/dir1/file1</strong></em> (рис.[4])</li>
+</ol>
+<p><img src="4.JPG" alt="4"></p>
+<hr>
+<ol start="5">
+<li>От пользователя guest проверяем правильность установления атрибута: <em><strong>lsattr /home/guest/dir1/file1</strong></em> (рис.[5])</li>
+</ol>
+<p><img src="5.JPG" alt="5"></p>
+<hr>
+<ol start="6">
+<li>Выполняем дозапись в файл file1 слова «test» командой <em><strong>echo “test” /home/guest/dir1/file1</strong></em>
+После этого выполняем чтение файла file1 командой <em><strong>cat /home/guest/dir1/file1</strong></em>
+Убедимся, что слово test было успешно записано в file1. (рис.[6])</li>
+</ol>
+<p><img src="6.JPG" alt="6"></p>
+<hr>
+<ol start="7">
+<li>Попробуйте удалить файл file1 либо стереть имеющуюся в нём информацию командой <em><strong>echo “abcd” > /home/guest/dirl/file1</strong></em>
+Пробуем переименовать файл(рис.[7-9])</li>
+</ol>
+<p><img src="7.JPG" alt="7"></p>
+<hr>
+<p><img src="8.JPG" alt="8"></p>
+<hr>
+<p><img src="9.JPG" alt="9"></p>
+<hr>
+<ol start="8">
+<li>Пробуем с помощью команды <em><strong>chmod 000 file1</strong></em> установить на файл file1 права, запрещающие чтение и запись для владельца файла. <strong>Не удалось выполнить указанные команды.</strong>(рис.[10])</li>
+</ol>
+<p><img src="10.JPG" alt="10"></p>
+<hr>
+<ol start="9">
+<li>Снимаем расширенный атрибут <strong>a</strong> с файла /home/guest/dirl/file1 от
+имени суперпользователя командой <em><strong>sudo chattr -a /home/guest/dir1/file1</strong></em> (рис.[11])</li>
+</ol>
+<p><img src="11.JPG" alt="11"></p>
+<hr>
+<p>И повторяем операции, которые ранее не удавалось выполнить. <strong>Теперь мы можем выполнить операции.</strong> (рис.[12])</p>
+<p><img src="12.JPG" alt="12"></p>
+<hr>
+<ol start="10">
+<li>Повторяем наши действия по шагам, заменив атрибут «a» атрибутом «i». командой <em><strong>sudo chattr +i /home/guest/dir1/file1</strong></em> (рис.[13-14])</li>
+</ol>
+<p><img src="14.JPG" alt="14">
+<img src="13.JPG" alt="13"></p>
+<p><strong>В данном случае в файл можно было только записать, а изменить/прочитать, переименовать и изменить его атрибуты - нельзя.</strong></p>
+<hr>
+<h1>Вывод</h1>
+<p>В результате выполнения работы я повысила свои навыки использования интерфейса командой строки (CLI), познакомилась на примерах с тем, как используются основные и расширенные атрибуты при разграничении доступа. Имела возможность связать теорию дискреционного разделения доступа (дискреционная политика безопасности) с её реализацией на практике в ОС Linux. Опробовала действие на практике расширенных атрибутов «а» и «i».</p>
+<hr>
+<h1>Список литературы{.unnumbered}</h1>
+<ol>
+<li><a href="https://esystem.rudn.ru/pluginfile.php/2357151/mod_resource/content/3/004-lab_discret_extattr.pdf">https://esystem.rudn.ru/pluginfile.php/2357151/mod_resource/content/3/004-lab_discret_extattr.pdf</a>
+::: {#refs}
+:::</li>
+</ol>
+<hr>
